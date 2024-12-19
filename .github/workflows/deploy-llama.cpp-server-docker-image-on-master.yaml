@@ -1,23 +1,36 @@
 name: Build and Deploy llama.cpp Server to GHCR (master)
 on:
   push:
-    branches: [ master ]
-env:
-  REGISTRY: ghcr.io
-  REPOSITORY_OWNER: ${{ github.repository_owner }}
-  IMAGE_PREFIX: llama.cpp-server
+#     branches: [ master ]
+# env:
+#   REGISTRY: ghcr.io
+#   REPOSITORY_OWNER: ${{ github.repository_owner }}
+#   IMAGE_PREFIX: llama.cpp-server
 jobs:
   build-and-push-image:
-    strategy:
-      matrix:
-        include:
-          - model_quantization: "Phi-3.5-mini-instruct-IQ2_M.gguf"
-            model_quantization_lowercase: "phi-3.5-mini-instruct-iq2_m.gguf"
-          - model_quantization: "Phi-3.5-mini-instruct-Q4_K_L.gguf"
-            model_quantization_lowercase: "phi-3.5-mini-instruct-q4_k_l.gguf"
-          - model_quantization: "Phi-3.5-mini-instruct-Q8_0.gguf"
-            model_quantization_lowercase: "phi-3.5-mini-instruct-q8_0.gguf"
-          # Add more combinations as needed
+    if: ${{ false }} # disable workflow
+    # strategy:
+    #   matrix:
+    #     include:
+    #       - model_quantization: "llama-3.2-1b-instruct-q4_k_m.gguf"
+    #         model_quantization_lowercase: "llama-3.2-1b-instruct-q4_k_m.gguf"
+    #         model_repo: "hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF"
+    #       - model_quantization: "llama-3.2-1b-instruct-q8_0.gguf"
+    #         model_quantization_lowercase: "llama-3.2-1b-instruct-q8_0.gguf"
+    #         model_repo: "hugging-quants/Llama-3.2-1B-Instruct-Q8_0-GGUF"
+    #       - model_quantization: "llama-3.2-3b-instruct-q4_k_m.gguf"
+    #         model_quantization_lowercase: "llama-3.2-3b-instruct-q4_k_m.gguf"
+    #         model_repo: "hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF"
+    #       - model_quantization: "llama-3.2-3b-instruct-q8_0.gguf"
+    #         model_quantization_lowercase: "llama-3.2-3b-instruct-q8_0.gguf"
+    #         model_repo: "hugging-quants/Llama-3.2-3B-Instruct-Q8_0-GGUF"
+    #       - model_quantization: "Phi-3.5-mini-instruct-Q4_K_L.gguf"
+    #         model_quantization_lowercase: "phi-3.5-mini-instruct-q4_k_l.gguf"
+    #         model_repo: "bartowski/Phi-3.5-mini-instruct-GGUF"
+    #       - model_quantization: "Phi-3.5-mini-instruct-Q8_0.gguf"
+    #         model_quantization_lowercase: "phi-3.5-mini-instruct-q8_0.gguf"
+    #         model_repo: "bartowski/Phi-3.5-mini-instruct-GGUF"
+    #       # Add more combinations as needed
     runs-on: ubuntu-latest
     permissions:
       contents: read
